@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lv.dao.PayAuditMapper">
+  <resultMap id="BaseResultMap" type="lv.model.PayAudit">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="error_type" jdbcType="TINYINT" property="errorType" />
+    <result column="trade_no" jdbcType="VARCHAR" property="tradeNo" />
+    <result column="amount" jdbcType="BIGINT" property="amount" />
+    <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
+    <result column="trade_time" jdbcType="TIMESTAMP" property="tradeTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="pay_provider" jdbcType="VARCHAR" property="payProvider" />
+    <result column="out_data" jdbcType="VARCHAR" property="outData" />
+    <result column="isactive" jdbcType="BIT" property="isactive" />
+    <result column="inserttime" jdbcType="TIMESTAMP" property="inserttime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, status, error_type, trade_no, amount, pay_status, trade_time, remark, pay_provider, 
+    out_data, isactive, inserttime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fc_pay_audit
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from fc_pay_audit
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="lv.model.PayAudit">
+    insert into fc_pay_audit (id, status, error_type, 
+      trade_no, amount, pay_status, 
+      trade_time, remark, pay_provider, 
+      out_data, isactive, inserttime, 
+      updatetime)
+    values (#{id,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{errorType,jdbcType=TINYINT}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{amount,jdbcType=BIGINT}, #{payStatus,jdbcType=TINYINT}, 
+      #{tradeTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{payProvider,jdbcType=VARCHAR}, 
+      #{outData,jdbcType=VARCHAR}, #{isactive,jdbcType=BIT}, #{inserttime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="lv.model.PayAudit">
+    insert into fc_pay_audit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="errorType != null">
+        error_type,
+      </if>
+      <if test="tradeNo != null">
+        trade_no,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="tradeTime != null">
+        trade_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="payProvider != null">
+        pay_provider,
+      </if>
+      <if test="outData != null">
+        out_data,
+      </if>
+      <if test="isactive != null">
+        isactive,
+      </if>
+      <if test="inserttime != null">
+        inserttime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="errorType != null">
+        #{errorType,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null">
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="tradeTime != null">
+        #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payProvider != null">
+        #{payProvider,jdbcType=VARCHAR},
+      </if>
+      <if test="outData != null">
+        #{outData,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=BIT},
+      </if>
+      <if test="inserttime != null">
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="lv.model.PayAudit">
+    update fc_pay_audit
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="errorType != null">
+        error_type = #{errorType,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null">
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="tradeTime != null">
+        trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payProvider != null">
+        pay_provider = #{payProvider,jdbcType=VARCHAR},
+      </if>
+      <if test="outData != null">
+        out_data = #{outData,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        isactive = #{isactive,jdbcType=BIT},
+      </if>
+      <if test="inserttime != null">
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="lv.model.PayAudit">
+    update fc_pay_audit
+    set status = #{status,jdbcType=TINYINT},
+      error_type = #{errorType,jdbcType=TINYINT},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=BIGINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      pay_provider = #{payProvider,jdbcType=VARCHAR},
+      out_data = #{outData,jdbcType=VARCHAR},
+      isactive = #{isactive,jdbcType=BIT},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="lv.model.PayAudit">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="error_type" jdbcType="TINYINT" property="errorType" />
+    <result column="trade_no" jdbcType="VARCHAR" property="tradeNo" />
+    <result column="amount" jdbcType="BIGINT" property="amount" />
+    <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
+    <result column="trade_time" jdbcType="TIMESTAMP" property="tradeTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="pay_provider" jdbcType="VARCHAR" property="payProvider" />
+    <result column="out_data" jdbcType="VARCHAR" property="outData" />
+    <result column="isactive" jdbcType="BIT" property="isactive" />
+    <result column="inserttime" jdbcType="TIMESTAMP" property="inserttime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, status, error_type, trade_no, amount, pay_status, trade_time, remark, pay_provider, 
+    out_data, isactive, inserttime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fc_pay_audit
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from fc_pay_audit
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="lv.model.PayAudit">
+    insert into fc_pay_audit (id, status, error_type, 
+      trade_no, amount, pay_status, 
+      trade_time, remark, pay_provider, 
+      out_data, isactive, inserttime, 
+      updatetime)
+    values (#{id,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{errorType,jdbcType=TINYINT}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{amount,jdbcType=BIGINT}, #{payStatus,jdbcType=TINYINT}, 
+      #{tradeTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{payProvider,jdbcType=VARCHAR}, 
+      #{outData,jdbcType=VARCHAR}, #{isactive,jdbcType=BIT}, #{inserttime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="lv.model.PayAudit">
+    insert into fc_pay_audit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="errorType != null">
+        error_type,
+      </if>
+      <if test="tradeNo != null">
+        trade_no,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="tradeTime != null">
+        trade_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="payProvider != null">
+        pay_provider,
+      </if>
+      <if test="outData != null">
+        out_data,
+      </if>
+      <if test="isactive != null">
+        isactive,
+      </if>
+      <if test="inserttime != null">
+        inserttime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="errorType != null">
+        #{errorType,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null">
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="tradeTime != null">
+        #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payProvider != null">
+        #{payProvider,jdbcType=VARCHAR},
+      </if>
+      <if test="outData != null">
+        #{outData,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=BIT},
+      </if>
+      <if test="inserttime != null">
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="lv.model.PayAudit">
+    update fc_pay_audit
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="errorType != null">
+        error_type = #{errorType,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null">
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="tradeTime != null">
+        trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payProvider != null">
+        pay_provider = #{payProvider,jdbcType=VARCHAR},
+      </if>
+      <if test="outData != null">
+        out_data = #{outData,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        isactive = #{isactive,jdbcType=BIT},
+      </if>
+      <if test="inserttime != null">
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="lv.model.PayAudit">
+    update fc_pay_audit
+    set status = #{status,jdbcType=TINYINT},
+      error_type = #{errorType,jdbcType=TINYINT},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=BIGINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      pay_provider = #{payProvider,jdbcType=VARCHAR},
+      out_data = #{outData,jdbcType=VARCHAR},
+      isactive = #{isactive,jdbcType=BIT},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="lv.model.PayAudit">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="error_type" jdbcType="TINYINT" property="errorType" />
+    <result column="trade_no" jdbcType="VARCHAR" property="tradeNo" />
+    <result column="amount" jdbcType="BIGINT" property="amount" />
+    <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
+    <result column="trade_time" jdbcType="TIMESTAMP" property="tradeTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="pay_provider" jdbcType="TINYINT" property="payProvider" />
+    <result column="out_data" jdbcType="VARCHAR" property="outData" />
+    <result column="isactive" jdbcType="BIT" property="isactive" />
+    <result column="inserttime" jdbcType="TIMESTAMP" property="inserttime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, status, error_type, trade_no, amount, pay_status, trade_time, remark, pay_provider, 
+    out_data, isactive, inserttime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fc_pay_audit
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from fc_pay_audit
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="lv.model.PayAudit">
+    insert into fc_pay_audit (id, status, error_type, 
+      trade_no, amount, pay_status, 
+      trade_time, remark, pay_provider, 
+      out_data, isactive, inserttime, 
+      updatetime)
+    values (#{id,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{errorType,jdbcType=TINYINT}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{amount,jdbcType=BIGINT}, #{payStatus,jdbcType=TINYINT}, 
+      #{tradeTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{payProvider,jdbcType=TINYINT}, 
+      #{outData,jdbcType=VARCHAR}, #{isactive,jdbcType=BIT}, #{inserttime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="lv.model.PayAudit">
+    insert into fc_pay_audit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="errorType != null">
+        error_type,
+      </if>
+      <if test="tradeNo != null">
+        trade_no,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="tradeTime != null">
+        trade_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="payProvider != null">
+        pay_provider,
+      </if>
+      <if test="outData != null">
+        out_data,
+      </if>
+      <if test="isactive != null">
+        isactive,
+      </if>
+      <if test="inserttime != null">
+        inserttime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="errorType != null">
+        #{errorType,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null">
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="tradeTime != null">
+        #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payProvider != null">
+        #{payProvider,jdbcType=TINYINT},
+      </if>
+      <if test="outData != null">
+        #{outData,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=BIT},
+      </if>
+      <if test="inserttime != null">
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="lv.model.PayAudit">
+    update fc_pay_audit
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="errorType != null">
+        error_type = #{errorType,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null">
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="tradeTime != null">
+        trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payProvider != null">
+        pay_provider = #{payProvider,jdbcType=TINYINT},
+      </if>
+      <if test="outData != null">
+        out_data = #{outData,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        isactive = #{isactive,jdbcType=BIT},
+      </if>
+      <if test="inserttime != null">
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="lv.model.PayAudit">
+    update fc_pay_audit
+    set status = #{status,jdbcType=TINYINT},
+      error_type = #{errorType,jdbcType=TINYINT},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=BIGINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      pay_provider = #{payProvider,jdbcType=TINYINT},
+      out_data = #{outData,jdbcType=VARCHAR},
+      isactive = #{isactive,jdbcType=BIT},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
